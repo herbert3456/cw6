@@ -1,12 +1,37 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('cw6');
+
+  imie = signal('');
+  nazwisko = signal('');
+  dataUrodzenia = signal('');
+  pokaz = signal(false);
+
+  ustawImie(event: Event) {
+    const input = event.target as HTMLInputElement;
+    this.imie.set(input.value);
+  }
+
+  ustawNazwisko(event: Event) {
+    const input = event.target as HTMLInputElement;
+    this.nazwisko.set(input.value);
+  }
+
+  ustawDate(event: Event) {
+    const input = event.target as HTMLInputElement;
+    this.dataUrodzenia.set(input.value);
+  }
+
+  wyslij() {
+    this.pokaz.set(true);
+  }
+
 }
